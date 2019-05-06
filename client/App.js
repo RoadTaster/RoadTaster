@@ -1,21 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation'
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
+import MainScreen from './src/screens/MainScreen'
+import SigninScreen from './src/screens/SigninScreen'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const AppNavigator = createStackNavigator({
+  Main: {
+    screen: MainScreen,
+    navigationOptions: {
+      title: '나는 메인 !'
+    }
   },
-});
+  Signin: {
+    screen: SigninScreen,
+    navigationOptions: {
+      title: '나는 회원가입 !'
+    }
+  }
+},
+{
+  initialRouteName: "Main" // 진입 화면
+}
+)
+
+export default createAppContainer(AppNavigator)
